@@ -7,8 +7,9 @@ const Users = () => {
     const handleDelete = userId => {
         setUsers(users.filter(user => user._id !== userId))
     }
+    
     const renderPhrase = number => {
-        let phrase = ' человек тусанет с тобой сегодня'
+        let phrase
         if (number > 4) {
             phrase = ' человек тусанет с тобой сегодня'
         } else if (number <= 4 && number > 1) {
