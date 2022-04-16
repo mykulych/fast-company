@@ -13,9 +13,13 @@ module.exports = {
     },
     plugins: ['react'],
     rules: {
-        indent: ['error', 4],
+        indent: 0,
         semi: [2, 'never'],
-        'space-before-function-paren': ['error', 'never'],
-        quotes: ['error', 'single', { allowTemplateLiterals: true }]
+        'space-before-function-paren': [
+            'error',
+            { anonymous: 'always', named: 'never' }
+        ],
+        quotes: ['error', 'single', { allowTemplateLiterals: true }],
+        'multiline-ternary': ['error', 'always-multiline']
     }
 }
