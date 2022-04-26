@@ -4,28 +4,24 @@ import TableHeader from './tableHeader'
 import TableBody from './tableBody'
 
 const Table = ({ children, selectedSort, onSort, columns, data }) => {
-    return (
-        <div className="table">
-            {children || (
-                <>
-                    <TableHeader
-                        selectedSort={selectedSort}
-                        columns={columns}
-                        onSort={onSort}
-                    />
-                    <TableBody columns={columns} data={data} />
-                </>
-            )}
-        </div>
-    )
+  return (
+    <table className="table">
+      {children || (
+        <>
+          <TableHeader selectedSort={selectedSort} columns={columns} onSort={onSort} />
+          <TableBody columns={columns} data={data} />
+        </>
+      )}
+    </table>
+  )
 }
 
 Table.propTypes = {
-    children: PropTypes.array,
-    selectedSort: PropTypes.object,
-    onSort: PropTypes.func,
-    columns: PropTypes.object,
-    data: PropTypes.array
+  children: PropTypes.array,
+  selectedSort: PropTypes.object,
+  onSort: PropTypes.func,
+  columns: PropTypes.object,
+  data: PropTypes.array
 }
 
 export default Table
