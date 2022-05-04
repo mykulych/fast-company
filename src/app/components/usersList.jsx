@@ -6,6 +6,7 @@ import api from '../api'
 import SearchStatus from './searchStatus'
 import UsersTable from './usersTable'
 import _ from 'lodash'
+import Search from './search'
 
 const UsersList = () => {
   const pageSize = 8
@@ -13,7 +14,7 @@ const UsersList = () => {
   const [profession, setProfession] = useState()
   const [selectedProf, setSelectedProf] = useState()
   const [sortBy, setSortBy] = useState({ path: 'name', order: 'asc' })
-
+  const [search, setSearch] = useState('')
   const [users, setUsers] = useState([])
 
   useEffect(() => {
@@ -23,6 +24,12 @@ const UsersList = () => {
   const handleDelete = (userId) => {
     setUsers(users.filter((user) => user._id !== userId))
   }
+
+  const handleSearch = (e) => {
+    setSelectedProf()
+    setSearch(e.target.value)
+  }
+
   const handleToggleBookMark = (id) => {
     setUsers(
       users.map((user) => {
@@ -43,6 +50,7 @@ const UsersList = () => {
   }, [selectedProf])
 
   const handleProfessionSelect = (item) => {
+    setSearch('')
     setSelectedProf(item)
   }
 
@@ -55,7 +63,11 @@ const UsersList = () => {
   }
 
   if (users) {
-    const filteredUsers = selectedProf ? users.filter((user) => user.profession._id === selectedProf._id) : users
+    const filteredUsers = selectedProf
+      ? users.filter((user) => user.profession._id === selectedProf._id)
+      : search
+      ? users.filter((user) => user.name.includes(search))
+      : users
     const count = filteredUsers.length
     const sortedUsers = _.orderBy(filteredUsers, [sortBy.path], [sortBy.order])
     const userCrop = paginate(sortedUsers, currentPage, pageSize)
@@ -76,6 +88,7 @@ const UsersList = () => {
         )}
         <div className="d-flex flex-column">
           <SearchStatus length={count} />
+          <Search data={search} handleSearch={handleSearch} />
           {count > 0 && (
             <UsersTable
               users={userCrop}
