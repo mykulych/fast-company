@@ -2,8 +2,8 @@ import React from 'react'
 import { Switch, Route } from 'react-router-dom'
 import Main from './components/layout/main'
 import Login from './components/layout/login'
-import Header from './components/layout/header'
-import Users from './components/users'
+import Header from './components/header'
+import Users from './components/layout/users'
 
 function App() {
   return (
