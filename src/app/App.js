@@ -1,21 +1,23 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
-import Main from './components/layout/main'
-import Login from './components/layout/login'
-import Header from './components/header'
-import Users from './components/layout/users'
+import React from "react";
+import { Route, Switch, Redirect } from "react-router-dom";
+
+import Users from "./layouts/users";
+import Login from "./layouts/login";
+import Main from "./layouts/main";
+import NavBar from "./components/ui/navBar";
 
 function App() {
-  return (
-    <>
-      <Header />
-      <Switch>
-        <Route path={'/'} exact component={Main} />
-        <Route path={'/login'} component={Login} />
-        <Route path={'/users/:userId?'} component={Users} />
-      </Switch>
-    </>
-  )
+    return (
+        <div>
+            <NavBar />
+            <Switch>
+                <Route path="/users/:userId?/:edit?" component={Users} />
+                <Route path="/login/:type?" component={Login} />
+                <Route path="/" exact component={Main} />
+                <Redirect to="/" />
+            </Switch>
+        </div>
+    );
 }
 
-export default App
+export default App;
