@@ -6,6 +6,7 @@ import TextField from "../../common/form/textField";
 import SelectField from "../../common/form/selectField";
 import RadioField from "../../common/form/radioField";
 import MultiSelectField from "../../common/form/multiSelectField";
+import BackHistoryButton from "../../common/backButton";
 
 const EditUserPage = () => {
     const { userId } = useParams();
@@ -126,13 +127,7 @@ const EditUserPage = () => {
     const isValid = Object.keys(errors).length === 0;
     return (
         <div className="container mt-5">
-            <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => history.push(`/users/${data._id}`)}
-            >
-                Назад
-            </button>
+            <BackHistoryButton />
             <div className="row">
                 <div className="col-md-6 offset-md-3 shadow p-4">
                     {!isLoading && Object.keys(professions).length > 0 ? (
