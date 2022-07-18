@@ -1,4 +1,4 @@
 {
-    "apiEndpoint": "https://fast-company-fbad5-default-rtdb.europe-west1.firebasedatabase.app/",
-    "isFireBase": true
+  "apiEndpoint": "",
+  "isFireBase": true
 }
